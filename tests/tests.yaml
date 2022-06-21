@@ -1,0 +1,9 @@
+charm_name: cinder-infinidat2
+tests:
+  - tests.tests.Cinderinfinidat2Test
+configure:
+  - zaza.openstack.charm_tests.keystone.setup.add_demo_user
+gate_bundles:
+  - focal-ussuri
+smoke_bundles:
+  - focal-ussuri

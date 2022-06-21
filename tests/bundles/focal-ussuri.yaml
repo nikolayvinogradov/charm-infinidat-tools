@@ -1,0 +1,50 @@
+series: focal
+comment:
+- 'machines section to decide order of deployment. database sooner = faster'
+machines:
+  '0':
+    constraints: mem=3072M
+  '1':
+  '2':
+  '3':
+local_overlay_enabled: false
+
+applications:
+  mysql:
+    charm: ch:percona-cluster
+    channel: latest/edge
+    num_units: 1
+    to:
+    - '0'
+  keystone:
+    charm: ch:keystone
+    channel: yoga/edge
+    num_units: 1
+    options:
+      openstack-origin: cloud:focal-ussuri
+    to:
+    - '1'
+  cinder:
+    charm: ch:cinder
+    channel: yoga/edge
+    num_units: 1
+    options:
+      openstack-origin: cloud:focal-ussuri
+    to:
+    - '2'
+  cinder-infinidat2:
+    charm: ../../cinder-infinidat2.charm
+    # options:
+  rabbitmq-server:
+    charm: ch:rabbitmq-server
+    channel: latest/edge
+    num_units: 1
+    to:
+    - '3'
+
+relations:
+- [ keystone:shared-db, mysql:shared-db ]
+- [ cinder:shared-db, mysql:shared-db ]
+- [ cinder:identity-service, keystone:identity-service ]
+- [ cinder:amqp, rabbitmq-server:amqp ]
+- [ cinder:storage-backend, cinder-infinidat2:storage-backend ]

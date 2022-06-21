@@ -1,0 +1,23 @@
+name: cinder-infinidat2
+summary: infinidat2 integration for OpenStack Block Storage
+maintainer: OpenStack Charmers <openstack-charmers@lists.ubuntu.com>
+description: |
+ Cinder is the block storage service for the Openstack project.
+ .
+ This charm provides a infinidat2 backend for Cinder
+tags:
+  - openstack
+  - storage
+  - file-servers
+  - misc
+series:
+  - focal
+subordinate: true
+provides:
+  storage-backend:
+    interface: cinder-backend
+    scope: container
+requires:
+  juju-info:
+    interface: juju-info
+    scope: container
