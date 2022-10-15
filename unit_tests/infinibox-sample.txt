@@ -1,0 +1,77 @@
+SCSI: Checking that sg3-utils is installed ... [1m[32mok[22m[39m
+SCSI: Checking that scsitools is installed ... [1m[32mok[22m[39m
+SCSI: Checking that parted is installed ... [1m[32mok[22m[39m
+Multipath: Checking that multipath-tools is installed ... [1m[32mok[22m[39m
+Multipath: Checking that multipath-tools-boot is installed ... [1m[32mok[22m[39m
+Multipath: Checking that multipath-tools automatically loads on boot ... [1m[32mok[22m[39m
+Multipath: Checking that kernel module multipath is loaded. ... [1m[32mok[22m[39m
+Multipath: Checking that multipath-tools is running. ... [1m[31mfail[22m[39m [1m[34mapplying fix [22m[39m[1m[31mfail[22m[39m
+Multipath: Checking global parameters ... [1m[34mskip[22m[39m
+Multipath: Checking InfiniBox Device Settings ... [1m[34mskip[22m[39m
+Multipath: Checking for InfiniBox device exclusions ... [1m[34mskip[22m[39m
+Multipath: Checking for local device exclusions ... [1m[34mskip[22m[39m
+Performance: Checking that a udev rule exists for setting the 'noop' I/O scheduler for InfiniBox scsi-disks and 'none' for all InfiniBox dm-disks ... [1m[32mok[22m[39m
+Performance: Checking that the current I/O scheduler for all InfiniBox scsi-disks is 'noop' and for all InfiniBox dm-disks is 'none' ... [1m[32mok[22m[39m
+FC HBA: Checking Fibre Channel host bus adapters ... [1m[34mskip[22m[39m
+FC HBA: Checking versions of FC HBA drivers ... [1m[34mskip[22m[39m
+FC HBA: Checking FC HBA driver attributes ... [1m[32mok[22m[39m
+Boot From SAN: Checking if PowerTools has made some changes that require a new initrd image in boot-from-san environments ... [1m[34mskip[22m[39m
+Devices: Checking for volumes that don't have a multipath device ... [1m[32mok[22m[39m
+Devices: Checking that all reported InfiniBox LUNs have a block device ... [1m[32mok[22m[39m
+Devices: Checking the path count for all InfiniBox MPIO devices ... [1m[32mok[22m[39m
+Connectivity: Checking if initiator ports connected to InfiniBox are not connected to other target ports ... [1m[34mskip[22m[39m
+Connectivity: Checking that each InfiniBox is connected through more than one initiator ... [1m[34mskip[22m[39m
+Connectivity: Checking that the host is connected to at least one Node of each InfiniBox ... [1m[34mskip[22m[39m
+Connectivity: Checking that the host does not have more block devices than the recommended limit ... [1m[34mskip[22m[39m
+Connectivity: Checking that the host does not have more volumes than the recommended number ... [1m[32mok[22m[39m
+===============================================================================
+[1m[31mFail[22m[39m Multipath: Checking that multipath-tools is running.
+REASON: [1m[31mFAILURE: service multipath-tools is not running[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202404141
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m Multipath: Checking global parameters
+REASON: [1m[34mSKIP: Multipath Daemon must be running for this test to pass[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202319232
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m Multipath: Checking InfiniBox Device Settings
+REASON: [1m[34mSKIP: Multipath Daemon must be running for this test to pass[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202404151
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m Multipath: Checking for InfiniBox device exclusions
+REASON: [1m[34mSKIP: Multipath Daemon must be running for this test to pass[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202319242
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m Multipath: Checking for local device exclusions
+REASON: [1m[34mSKIP: Multipath Daemon must be running for this test to pass[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202404331
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m FC HBA: Checking Fibre Channel host bus adapters
+REASON: [1m[34mSKIP: no fiberchannel ports detected[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202404231
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m FC HBA: Checking versions of FC HBA drivers
+REASON: [1m[34mSKIP: no fiberchannel ports detected[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202319342
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m Boot From SAN: Checking if PowerTools has made some changes that require a new initrd image in boot-from-san environments
+REASON: [1m[34mSKIP: no boot-related changes were performed[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202621702
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m Connectivity: Checking if initiator ports connected to InfiniBox are not connected to other target ports
+REASON: [1m[34mSKIP: no fiberchannel ports connected to InfiniBox[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202319352
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m Connectivity: Checking that each InfiniBox is connected through more than one initiator
+REASON: [1m[34mSKIP: no fiberchannel ports connected to InfiniBox[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202404261
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m Connectivity: Checking that the host is connected to at least one Node of each InfiniBox
+REASON: [1m[34mSKIP: no fiberchannel ports connected to a physical port of InfiniBox[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202404271
+-------------------------------------------------------------------------------
+[1m[34mSkip[22m[39m Connectivity: Checking that the host does not have more block devices than the recommended limit
+REASON: [1m[34mSKIP: no initiator ports connected to InfiniBox[22m[39m
+INFO: For more information, see https://support.infinidat.com/hc/articles/202319172
+-------------------------------------------------------------------------------
+(failures=1, skips=11)
+[1m[35mThis host is NOT ready to work with the InfiniBox[22m[39m

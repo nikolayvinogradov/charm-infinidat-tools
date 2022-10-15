@@ -32,8 +32,8 @@ applications:
       openstack-origin: cloud:focal-ussuri
     to:
     - '2'
-  cinder-infinidat2:
-    charm: ../../cinder-infinidat2.charm
+  infinidat-tools:
+    charm: ../../infinidat-tools.charm
     # options:
   rabbitmq-server:
     charm: ch:rabbitmq-server
@@ -47,4 +47,4 @@ relations:
 - [ cinder:shared-db, mysql:shared-db ]
 - [ cinder:identity-service, keystone:identity-service ]
 - [ cinder:amqp, rabbitmq-server:amqp ]
-- [ cinder:storage-backend, cinder-infinidat2:storage-backend ]
+- [ cinder:juju-info, infinidat-tools:juju-info ]

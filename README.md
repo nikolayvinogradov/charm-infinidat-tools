@@ -1,17 +1,16 @@
-infinidat2 Storage Backend for Cinder
--------------------------------
+Infinidat Tools charm
+---------------------
 
 Overview
 ========
 
-This charm provides a infinidat2 storage backend for use with the Cinder
-charm.
+This charm provides configuration and tools for principal charms, such as cinder and nova-compute charms.
 
-To use:
+To use as a nova-compute subordinate:
 
-    juju deploy cinder
-    juju deploy cinder-infinidat2
-    juju add-relation cinder-infinidat2 cinder
+    juju deploy nova
+    juju deploy infinidat-tools
+    juju add-relation infinidat-tools:storage-backend nova:storage-backend
 
 Configuration
 =============

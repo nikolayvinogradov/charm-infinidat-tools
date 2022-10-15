@@ -14,17 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Encapsulate cinder-infinidat2 testing."""
+"""Encapsulate infinidat-tools testing."""
 
 from zaza.openstack.charm_tests.cinder_backend.tests import CinderBackendTest
 
 
-class Cinderinfinidat2Test(CinderBackendTest):
-    """Encapsulate infinidat2 tests."""
+class InfinidatToolsTest(CinderBackendTest):
+    """Encapsulate infinidat-tools tests."""
 
-    backend_name = 'infinidat2'
+    backend_name = 'cinder-infinidat'
 
     expected_config_content = {
-        'infinidat2': {
-            'volume-backend-name': ['infinidat2'],
-        }}
+        'infinidat-tools': {
+            'volume-backend-name': ['cinder-infinidat'],
+        }
+    }

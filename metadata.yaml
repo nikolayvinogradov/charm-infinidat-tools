@@ -1,10 +1,11 @@
-name: cinder-infinidat2
-summary: infinidat2 integration for OpenStack Block Storage
+name: infinidat-tools
+summary: Inifnidat integration tools for OpenStack Block Storage
 maintainer: OpenStack Charmers <openstack-charmers@lists.ubuntu.com>
 description: |
- Cinder is the block storage service for the Openstack project.
- .
- This charm provides a infinidat2 backend for Cinder
+  This charm is intended to be used as a subordinate charm to any machine which will access Infinidat Infinibox storage.
+  Infinidat host powertools is installed and is used to configure the machine (akin to infinihost settings check --auto-fix).
+  Compatible with bare-metal and KVM machines.
+  NOT compatible with lxd containers as they can't run multipathd on bionic.
 tags:
   - openstack
   - storage
@@ -15,7 +16,7 @@ series:
 subordinate: true
 provides:
   storage-backend:
-    interface: cinder-backend
+    interface: storage-backend
     scope: container
 requires:
   juju-info:

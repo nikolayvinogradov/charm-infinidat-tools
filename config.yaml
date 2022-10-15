@@ -1,38 +1,42 @@
 options:
-  driver-source:
+  install_sources:
     type: string
-    default:
+    default: "deb https://repo.infinidat.com/packages/main-stable/apt/linux-ubuntu {distrib_codename} main"
     description: |
       Optional configuration to support use of additional sources such as:
         - ppa:myteam/ppa
         - cloud:trusty-proposed/kilo
         - http://my.archive.com/ubuntu main
       The last option should be used in conjunction with the key configuration
-      option.
-  driver-key:
+      option. See https://repo.infinidat.com/home/main-stable for details.
+      The charm also supports templating of the distribution codename via 
+      automatic expansion of {distrib_codename} depending on the host system
+  install_keys:
     type: string
-    default:
+    default: |
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
+      Version: GnuPG v1.4.11 (GNU/Linux)
+
+      mQENBFESDRIBCADMR7MQMbH4GdCQqfrOMt35MhBwwH4wv9kb1WRSTxa0CmuzYaBB
+      1nJ0nLaMAwHsEr9CytPWDpMngm/3nt+4F2hJcsOEkQkqeJ31gScJewM+AOUV3DEl
+      qOeXXYLcP+jUY6pPjlZpOw0p7moUQPXHn+7amVrk7cXGQ8O3B+5a5wjN86LT2hlX
+      DlBlV5bX/DYluiPUbvQLOknmwO53KpaeDeZc4a8iIOCYWu2ntuAMddBkTps0El5n
+      JJZMTf6os2ZzngWMZRMDiVJgqVRi2b+8SgFQlQy0cAmne/mpgPrRq0ZMX3DokGG5
+      hnIg1mF82laTxd+9qtiOxupzJqf8mncQHdaTABEBAAG0IWFwcF9yZXBvIChDb21t
+      ZW50KSA8bm9AZW1haWwuY29tPokBOAQTAQIAIgUCURINEgIbLwYLCQgHAwIGFQgC
+      CQoLBBYCAwECHgECF4AACgkQem2D/j05RYSrcggAsCc4KppV/SZX5XI/CWFXIAXw
+      +HaNsh2EwYKf9DhtoGbTOuwePvrPGcgFYM3Tu+m+rziPnnFl0bs0xwQyNEVQ9yDw
+      t465pSgmXwEHbBkoISV1e4WYtZAsnTNne9ieJ49Ob/WY4w3AkdPRK/41UP5Ct6lR
+      HHRXrSWJYHVq5Rh6BakRuMJyJLz/KvcJAaPkA4U6VrPD7PFtSecMTaONPjGCcomq
+      b7q84G5ZfeJWb742PWBTS8fJdC+Jd4y5fFdJS9fQwIo52Ff9In2QBpJt5Wdc02SI
+      fvQnuh37D2P8OcIfMxMfoFXpAMWjrMYc5veyQY1GXD/EOkfjjLne6qWPLfNojA==
+      =w5Os
+      -----END PGP PUBLIC KEY BLOCK-----
     description: |
       Key ID to import to the apt keyring to support use with arbitary source
       configuration from outside of Launchpad archives or PPA's.
-  use-multipath:
-    type: boolean
-    default: True
-    description: |
-      Whether to use a multipath connection for iSCSI or FC in Cinder
-      volume service. Enabling multipath for VMs is managed by the
-      "use-multipath" option in the nova-compute charm.
-  protocol:
-    type: string
-    default:
-    description: |
-      SAN protocol to use. Choose between iscsi or fc.
-  volume-backend-name:
+  lvm_global_filter:
     type: string
     description: |
-        Volume backend name for the backend. The default value is the
-        application name in the Juju model, e.g. "cinder-mybackend"
-        if it's deployed as `juju deploy cinder-infinidat2 cinder-mybackend`.
-        A common backend name can be set to multiple backends with the
-        same characters so that those can be treated as a single virtual
-        backend associated with a single volume type.
+      Value for global_filter to specify in lvm.conf
+    default: "[ \"a|^/dev/sd.*|\", \"a|^/dev/vd.*|\", \"r|.*|\" ]"

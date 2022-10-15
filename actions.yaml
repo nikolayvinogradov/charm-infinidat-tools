@@ -1,0 +1,9 @@
+run-infinidat-settings-check:
+  description: |
+    Manually trigger environment re-validation with infinihost tool.
+  params:
+    auto-fix:
+      type: string
+      description: |
+        If true, infinihost updates environment multipath,
+        iscsi and lvm configuration to recommended defaults.
