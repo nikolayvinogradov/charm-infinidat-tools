@@ -16,7 +16,7 @@ import subprocess
 import unittest
 from io import StringIO
 from unittest import mock
-from src.charm import InfinidatToolsCharm
+from src.charm import InfinidatToolsCharm, INFINIHOST_RESULTS_DIR
 from ops.testing import Harness
 
 from ops.model import (
@@ -317,11 +317,43 @@ class TestInfinidatToolsCharm(unittest.TestCase):
     def check_contents(self):
         pass
 
-    def test_action_outfile_created(self):
-        pass
+    @mock.patch('src.charm.InfinidatToolsCharm._run_infinihost_check')
+    @mock.patch('src.charm.InfinidatToolsCharm._update_multipath_conf')
+    @mock.patch('tempfile.NamedTemporaryFile')
+    @mock.patch('pathlib.Path.mkdir')
+    @mock.patch('pathlib.Path.chmod')
+    def test_action_outfile_created(self, p, mkdir, ntf,
+                                    _update_multipath_conf,
+                                    _run_infinihost_check):
 
-    def test_action_no_autofix(self):
-        pass
+        action_event = mock.MagicMock()
+        action_event.params = {"auto-fix": "True"}
 
-    def test_action_autofix(self):
-        pass
+        class fake_ntf:
+            def __init__(self, *args, **kwargs):
+                self.name = 'fake named temporary file'
+
+            def __enter__(self, *args, **kwargs):
+                return self
+
+            def __exit__(self, *args, **kwargs):
+                pass
+
+        ntf_i = fake_ntf()
+
+        ntf.return_value = ntf_i
+
+        self.harness.charm.on_run_infinidat_settings_check_action(action_event)
+
+        _run_infinihost_check.assert_called_with(auto_fix=True, stdout=ntf_i)
+
+        ntf.assert_called_with(mode="w+b", prefix="infinihost-out-",
+                               dir=INFINIHOST_RESULTS_DIR, delete=False)
+
+        p.assert_called_with(0o644)
+
+        action_event.params = {}
+
+        self.harness.charm.on_run_infinidat_settings_check_action(action_event)
+
+        _run_infinihost_check.assert_called_with(auto_fix=False, stdout=ntf_i)
